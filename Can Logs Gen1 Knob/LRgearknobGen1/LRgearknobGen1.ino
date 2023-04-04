@@ -237,54 +237,12 @@ void sendcan()
 
 }
 
-void RaiseKnob()
-{
-  Knoblock = Unlocked;
-  KnobPosDes = Raise;
-}
-
-void LowerKnob()
-{
-  KnobPosDes = Lower;
-}
 
 void Serialcomms()
 {
   byte incomingByte = Serial.read();
   switch (incomingByte)
   {
-    case 's': //Start
-      RaiseKnob();
-      break;
-
-    case 'q': //Stop
-      LowerKnob();
-      break;
-
-    case 'r':
-      KnobPosDes = 1;
-      break;
-
-    case 'e':
-      KnobPosDes = 0;
-      break;
-
-    case 'w':
-      if (Knoblock == Locked)
-      {
-        Knoblock = Unlocked;
-        Serial.println();
-        Serial.println("UnLocked");
-      }
-      else
-      {
-        Knoblock = Locked;
-        Serial.println();
-        Serial.println("Locked");
-      }
-
-      break;
-
     case 'd':
       candebug = !candebug;
       break;
