@@ -1,5 +1,4 @@
-// CAN Receive Example
-//
+// //
 
 #include <mcp_can.h>
 #include <SPI.h>
@@ -11,7 +10,7 @@ unsigned char len = 0;
 unsigned char rxBuf[8];
 char msgString[128];                        // Array to store serial string
 
-uint8_t Dir = 1;
+uint8_t Dir = 0;
 
 #define Park 0
 #define Reverse 1
@@ -126,6 +125,13 @@ void loop()
 
     sendcan();
     Cnt3f3 ++;
+    if (Dir == Park)
+    {
+      if (Cnt3f3 == 0x02)
+      {
+        Cnt3f3 = 0x04;
+      }
+    }
     if (Cnt3f3 == 0xF)
     {
       Cnt3f3 = 0x00;
